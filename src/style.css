@@ -29,7 +29,7 @@ body {
   color: var(--offwhite);
   font-family: var(--font);
   letter-spacing: -1px;
-  padding-left: 5px;
+  padding-left: 15px;
   font-size: 30px;
 
   gap: 10px;
@@ -105,20 +105,21 @@ body {
   height: 100%;
 }
 .quote {
-  width: 60%;
+  width: 70%;
   height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid var(--textcolor);
+  font-size: 18px;
   font-family: var(--font);
   color: var(--textcolor);
-  background-color: var(--lightpurple);
 }
 .catagory-title {
   font-size: 40px;
   font-family: var(--font);
+  height: 100px;
+  margin-bottom: 0;
 }
 .displayed-todos {
   font-family: var(--font);
@@ -171,4 +172,23 @@ body {
 .delete:hover {
   background-color: rgb(194, 3, 3);
   cursor: pointer;
+}
+.red-text {
+  color: rgb(194, 3, 3);
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px;
+}
+.green-text {
+  font-weight: bold;
+  color: var(--green);
+  padding: 5px;
+  font-size: 20px;
+}
+.project {
+  color: var(--blue);
+}
+.get-to-do {
+  font-size: 30px;
+  padding-left: 5px;
 }
