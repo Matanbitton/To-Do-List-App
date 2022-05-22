@@ -174,7 +174,7 @@ body {
   cursor: pointer;
 }
 .red-text {
-  color: rgb(194, 3, 3);
+  color: var(--blue);
   font-weight: bold;
   font-size: 20px;
   padding: 5px;
