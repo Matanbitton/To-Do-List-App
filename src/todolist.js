@@ -1,5 +1,3 @@
-import ToDo from "./todo";
-
 export default class ToDoList {
   constructor() {
     this.toDos = [];

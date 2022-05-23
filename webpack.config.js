@@ -13,7 +13,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "Development",
-      template: "./dist/index.html",
+      template: path.join(__dirname, "./dist/index.html"),
+      inject: false,
     }),
   ],
   devtool: "inline-source-map",

@@ -11,8 +11,8 @@ let myTodo = new ToDo("title", "des", "date", "important");
 let moreTodo = new ToDo("movie", "black", "tommorow", "important");
 myList.addToDo(myTodo);
 myList.addToDo(moreTodo);
-console.log(myList.toDos);
-toDoDisplayed.append(renderToDos(myList.toDos));
+renderToDos(myList.toDos);
+console.log("ptoato");
 
 let workProject = new Project("Art");
 workProject.addToProjectToDos(myList);
