@@ -130,6 +130,7 @@ body {
   border-radius: 1em;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 .todo {
   display: grid;
