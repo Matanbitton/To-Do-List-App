@@ -7,8 +7,8 @@ import renderToDos from "./rendertodos";
 
 const toDoDisplayed = document.querySelector(".displayed-todos");
 let myList = new ToDoList();
-let myTodo = new ToDo("title", "des", "date", "important");
-let moreTodo = new ToDo("movie", "black", "tommorow", "important");
+let myTodo = new ToDo("Take the dog for a walk", "des", "date", "important");
+let moreTodo = new ToDo("movie with friends", "black", "tommorow", "important");
 myList.addToDo(myTodo);
 myList.addToDo(moreTodo);
 renderToDos(myList.toDos);
