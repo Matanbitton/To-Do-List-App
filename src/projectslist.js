@@ -1,8 +1,11 @@
+import Project from "./project";
+
+let projectTemplate = new Project("Work", []);
 export default class ProjectsList {
   constructor() {
-    this.Projects = ["Work"];
+    this.projects = [projectTemplate];
   }
   addToProjectList(project) {
-    this.Projects.push(project);
+    this.projects.push(project);
   }
 }

@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const confetti = require("canvas-confetti");
 
 module.exports = {
   mode: "development",
