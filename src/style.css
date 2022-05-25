@@ -191,7 +191,9 @@ body {
 .todo-blue {
   border-left: 8px solid var(--blue);
 }
-
+.no-todos-img {
+  display: none;
+}
 .todo > p {
   grid-area: 1 / 1 / 1 / 3;
 

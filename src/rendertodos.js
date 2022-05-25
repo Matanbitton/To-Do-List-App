@@ -1,6 +1,6 @@
 import jsConfetti from "canvas-confetti";
 
-export default function renderToDos(toDos) {
+export function renderToDos(toDos) {
   const displayedToDos = document.querySelector(".displayed-todos");
   displayedToDos.innerHTML = "";
   for (let i = 0; i < toDos.length; i++) {
@@ -52,4 +52,7 @@ export default function renderToDos(toDos) {
     buttonsContainer.append(checkButton, deleteButton);
     return buttonsContainer;
   }
+}
+export function listEmptyShowSVG(elementToAppendTo, toDos, img) {
+  if (toDos.length == 0) elementToAppendTo.append(img);
 }
