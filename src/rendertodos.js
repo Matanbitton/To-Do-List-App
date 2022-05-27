@@ -63,11 +63,9 @@ export function renderToDos(toDos) {
   }
 }
 
-export function listEmptyShowSVG(elementToAppendTo, toDos, img) {
+export function listEmptyShowSVG(elementToAppendTo, img) {
   const noToDosText = document.createElement("h4");
   noToDosText.className = "no-todos-text";
   noToDosText.innerText = "My to-do list is empty, Time to relax...";
-  if (toDos.length == 0) {
-    elementToAppendTo.append(noToDosText, img);
-  }
+  elementToAppendTo.append(noToDosText, img);
 }
