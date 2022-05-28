@@ -6,25 +6,51 @@ import ProjectsList from "./projectslist";
 import { renderToDos, listEmptyShowSVG } from "./rendertodos";
 import renderProjects from "./renderprojects";
 import icon from "./noToDos.svg";
+import formVisiblity from "./toDoUserInput";
 
-const toDoDisplayed = document.querySelector(".displayed-todos");
-let toDoSectionContainer = document.querySelector(".todo-section-container");
+(function ToDoListApp() {
+  formVisiblity();
 
-const myIcon = new Image();
-myIcon.src = icon;
+  const toDoDisplayed = document.querySelector(".displayed-todos");
+  const form = document.querySelector(".add-todo-form");
+  const myList = new ToDoList();
+  renderToDos(myList.toDos);
 
-let myList = new ToDoList();
-let myTodo = new ToDo("Take the dog for a walk", "des", "date", "important");
-let moreTodo = new ToDo("movie with friends", "black", "tommorow", "important");
-let moreTodo1 = new ToDo("Ruhi Yahud", "black", "tommorow", "important");
-let moreTodo2 = new ToDo("Eat Falafel", "black", "tommorow", "important");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const toDoTitle = document.getElementById("todo-title").value;
+    const toDoDescription = document.getElementById("todo-description").value;
+    const toDoDate = document.getElementById("todo-date").value;
+    const toDoPriority = document.getElementById("todo-priority").value;
+    const toDo = new ToDo(toDoTitle, toDoDescription, toDoDate, toDoPriority);
+    myList.addToDo(toDo);
+    renderToDos(myList.toDos);
+  });
 
-renderToDos(myList.toDos);
-listEmptyShowSVG(toDoDisplayed, myList.toDos, myIcon);
+  const myIcon = new Image();
+  myIcon.className = "no-todos-img";
+  myIcon.src = icon;
 
-let workProject = new Project("Art");
-workProject.addToProjectToDos(myList);
-let projectsList = new ProjectsList();
+  toDoDisplayed.addEventListener("click", (e) => {
+    let toDoDiv = e.target.parentNode.parentNode;
 
-projectsList.addToProjectList(workProject);
-renderProjects(projectsList.projects);
+    if (toDoDiv.dataset.name && e.target.className == "delete") {
+      myList.removeToDo(toDoDiv.dataset.name);
+      toDoDiv.remove();
+      console.log(myList.toDos);
+      if (myList.toDos.length == 0) {
+        listEmptyShowSVG(toDoDisplayed, myIcon);
+      }
+    }
+  });
+
+  let workProject = new Project("Art");
+  workProject.addToProjectToDos(myList);
+  let projectsList = new ProjectsList();
+
+  // this works and you need a function that deletes
+  // the appropriate todo in relations to html element pressed
+
+  projectsList.addToProjectList(workProject);
+  renderProjects(projectsList.projects);
+})();
