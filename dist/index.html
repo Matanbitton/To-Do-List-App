@@ -45,20 +45,20 @@
       </aside>
       <div class="add-todo-form-container">
         <form class="add-todo-form">
+          <h4 class="form-title">New To Do</h4>
           <label for=" todo-title">To Do Title: </label>
-          <input id="todo-title" type="text" />
+          <input id="todo-title" type="text" required />
           <label for="todo-description">To Do Description: </label>
           <input id="todo-description" type="text" />
           <label for="todo-date">Due At This Date: </label>
           <input id="todo-date" type="date" />
           <label for="todo-priority">Priority</label>
-          <label for="todo-priority"></label>
-          <select id="todo-priority" name="todo-priority">
+          <select id="todo-priority" name="todo-priority" required>
             <option value="important">High Importance</option>
             <option value="mild-importance">Mild Importance</option>
-            <option value="low-improtance">Low Importance</option>
+            <option value="low-importance">Low Importance</option>
           </select>
-          <button type="submit" class="submit">Enter</button>
+          <button type="submit" class="submit">Add To Do</button>
         </form>
       </div>
       <div class="todo-section-container">
@@ -76,7 +76,7 @@
         </h4>
 
         <div class="displayed-todos"></div>
-        <button class="add-todo">
+        <button class="add-todo-button">
           <i class="fa-solid fa-plus"></i>
           Add To Do
         </button>
