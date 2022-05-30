@@ -45,7 +45,6 @@ body {
 .sidebar {
   grid-area: 2 / 1 / 6 / 2;
   background-color: var(--lightpurple);
-
   height: 90vh;
   padding-left: 20px;
   padding-top: 20px;
@@ -117,7 +116,10 @@ body {
 }
 .footer {
   grid-area: 9 / 1 / 10 / 3;
+  font-family: var(--font);
   padding: 12px;
+  font-size: 16px;
+  font-style: italic;
   background-color: var(--blue);
   color: white;
 }
@@ -157,21 +159,7 @@ body {
   flex-direction: column;
   gap: 10px;
 }
-/*.add-todo-button {
-  background-color: white;
-  color: var(--blue);
-  font-size: 35px;
-  font-weight: 500;
-  border: 2px solid var(--blue);
-  width: 80%;
-  border-radius: 0.5em;
-  font-family: var(--font);
-}
 
-.add-todo-button:hover {
-  background-color: var(--blue);
-  color: white;
-}*/
 .todo {
   display: grid;
   grid-template-columns: 1fr 50px;
