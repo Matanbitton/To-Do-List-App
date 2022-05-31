@@ -17,6 +17,9 @@ export default class ToDoList {
   removeToDo(toDoTitle) {
     this.toDos = this.toDos.filter((item) => item["title"] !== toDoTitle);
   }
+  getToDo(toDoTitle) {
+    return this.toDos.find((toDo) => toDo.title == toDoTitle);
+  }
   checkIfEmpty() {
     if (this.toDos.length == 0) {
       return true;
