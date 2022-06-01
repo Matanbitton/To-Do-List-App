@@ -12,17 +12,23 @@ export function createToDoDivs(toDoObjects) {
   for (let i = 0; i < toDoObjects.length; i++) {
     const toDoDiv = document.createElement("div");
     const toDoText = document.createElement("p");
+    const date = document.createElement("p");
+
     const buttons = renderButtons();
     toDoDiv.className = "todo";
+    date.className = "due-date";
+
     if (toDoObjects[i].done) {
       toDoDiv.classList.add("todo-done");
       toDoDiv.dataset.state = "done";
       toDoDiv.dataset.priority = toDoObjects[i]["priority"];
       toDoDiv.dataset.name = toDoObjects[i]["title"];
+      toDoDiv.dataset.date = toDoObjects[i]["dueDate"];
     } else {
       toDoDiv.className = "todo";
       toDoDiv.dataset.name = toDoObjects[i]["title"];
       toDoDiv.dataset.priority = toDoObjects[i]["priority"];
+      toDoDiv.dataset.date = toDoObjects[i]["dueDate"];
     }
 
     //setting priorities css attributes
@@ -38,6 +44,10 @@ export function createToDoDivs(toDoObjects) {
     }
 
     toDoText.innerText = `${toDoObjects[i].title}`;
+
+    date.innerText = `${toDoDiv.dataset.date}`;
+
+    buttons.prepend(date);
     toDoDiv.append(toDoText, buttons);
     displayedToDos.append(toDoDiv);
   }
@@ -46,32 +56,15 @@ export function createToDoDivs(toDoObjects) {
 
 function renderButtons() {
   const buttonsContainer = document.createElement("button-wrapper");
+  buttonsContainer.innerHTML += `<i class="fa-regular fa-calendar-minus"></i>`;
 
   const checkButton = document.createElement("button");
   const deleteButton = document.createElement("button");
+
   deleteButton.className = "delete";
   checkButton.className = "check";
   checkButton.id = "check";
 
-  /* 
-  checkButton.addEventListener("click", () => {
-    if (!buttonsContainer.parentNode.classList.contains("todo-done")) {
-      buttonsContainer.parentNode.classList.add("todo-done");
-      buttonsContainer.parentNode.dataset.state = "done";
-
-      let confetti = jsConfetti({
-        spread: 120,
-        particleCount: 200,
-        startVelocity: 100,
-        origin: { y: 1.1 },
-      });
-    } else {
-      buttonsContainer.parentNode.classList.remove("todo-done");
-      buttonsContainer.parentNode.dataset.state = "";
-    }
-  }); */
-
-  checkButton.id = "check";
   buttonsContainer.className = "button-wrapper";
 
   checkButton.innerHTML = `<i class="fa-solid fa-check"></i>`;
