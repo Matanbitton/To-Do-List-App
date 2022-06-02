@@ -20,10 +20,13 @@ import icon from "./noToDos.svg";
   const toDoList = new ToDoList();
   const doneToDoButton = document.querySelector(".done-todos");
   const allToDoButton = document.querySelector(".all-todos");
+  const addProjectButton = document.querySelector(".add-project");
+  const projectsContainer = document.querySelector(".projects");
 
   let toDoDivList;
 
   formVisiblity();
+  projectFormVisibility();
   createToDoDivs(toDoList.toDos);
   checkButtonEL();
 
@@ -91,6 +94,26 @@ import icon from "./noToDos.svg";
           e.target.parentNode.parentNode.dataset.state = "";
         }
       });
+    });
+  }
+  function projectFormVisibility() {
+    const typeProjectNameInput = document.querySelector("#project-input");
+    const typeProjectNameInputSubmit = document.querySelector(
+      "#project-input-submit"
+    );
+    addProjectButton.addEventListener("click", () => {
+      typeProjectNameInput.value = "";
+
+      typeProjectNameInput.style.display = "block";
+      typeProjectNameInputSubmit.style.display = "block";
+    });
+
+    typeProjectNameInputSubmit.addEventListener("click", (e) => {
+      e.preventDefault();
+      typeProjectNameInput.style.display = "none";
+      typeProjectNameInputSubmit.style.display = "none";
+      var projectName = typeProjectNameInput.value;
+      console.log(projectName);
     });
   }
 
