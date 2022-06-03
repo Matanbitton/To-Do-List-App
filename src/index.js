@@ -111,12 +111,14 @@ import icon from "./noToDos.svg";
       e.preventDefault();
       typeProjectNameInput.style.display = "none";
       typeProjectNameInputSubmit.style.display = "none";
-      let projectName = new Project(typeProjectNameInput.value);
 
-      projectsList.addToProjectList(projectName);
-
-      renderProjects(projectsList.projects);
-      console.log(projectsList);
+      if (typeProjectNameInput.value.length != 0) {
+        let projectName = new Project(typeProjectNameInput.value);
+        projectsList.addToProjectList(projectName);
+        renderProjects(projectsList.projects);
+      } else {
+        typeProjectNameInput.style.border = "2px solid red";
+      }
     });
   }
 
