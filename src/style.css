@@ -246,6 +246,7 @@ body {
 .add-project:hover {
   background-color: var(--blue);
   color: white;
+  cursor: pointer;
 }
 .get-to-do {
   font-size: 30px;
@@ -418,7 +419,6 @@ body {
 
 #project-input {
   margin-top: 10px;
-
   padding: 5px;
   display: none;
 
@@ -430,6 +430,16 @@ body {
 #project-input-submit {
   margin-top: 10px;
   display: none;
-  border-radius: 1em;
-  padding: 10px;
+  font-size: 16px;
+  border-radius: 0.5em;
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#project-input-submit:hover {
+  background-color: var(--blue);
+  color: white;
+  cursor: pointer;
 }
