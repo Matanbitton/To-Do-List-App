@@ -55,7 +55,6 @@ import icon from "./noToDos.svg";
 
   allToDoButton.addEventListener("click", () => {
     let allToDo = toDoList.toDos;
-    console.log(allToDo);
     toDoDisplayed.innerHTML = "";
     createToDoDivs(allToDo);
     checkButtonEL();
@@ -112,8 +111,12 @@ import icon from "./noToDos.svg";
       e.preventDefault();
       typeProjectNameInput.style.display = "none";
       typeProjectNameInputSubmit.style.display = "none";
-      var projectName = typeProjectNameInput.value;
-      console.log(projectName);
+      let projectName = new Project(typeProjectNameInput.value);
+
+      projectsList.addToProjectList(projectName);
+
+      renderProjects(projectsList.projects);
+      console.log(projectsList);
     });
   }
 
