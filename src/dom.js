@@ -81,8 +81,8 @@ export function listEmptyShowSVG(elementToAppendTo, img) {
   elementToAppendTo.append(noToDosText, img);
 }
 export function renderProjects(projects) {
-  const displayedProjects = document.querySelector(".projects");
-  console.log("here");
+  const displayedProjects = document.querySelector(".projects-container");
+  displayedProjects.innerHTML = "";
 
   for (let i = 0; i < projects.length; i++) {
     const projectDiv = document.createElement("div");
@@ -91,7 +91,7 @@ export function renderProjects(projects) {
 
     projectDiv.className = "project-item";
     projectDiv.append(projectName);
-    displayedProjects.append(projectDiv);
+    displayedProjects.prepend(projectDiv);
   }
 }
 export function formVisiblity() {
