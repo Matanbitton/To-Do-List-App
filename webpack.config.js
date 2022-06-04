@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const confetti = require("canvas-confetti");
+const dataFns = require("date-fns");
 
 module.exports = {
   mode: "development",
@@ -18,6 +19,7 @@ module.exports = {
       inject: false,
     }),
   ],
+
   devtool: "inline-source-map",
   devServer: {
     port: 3000,
