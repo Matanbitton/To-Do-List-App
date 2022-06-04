@@ -4,6 +4,7 @@ import ToDoList from "./todolist";
 import Project from "./project";
 import ProjectsList from "./projectslist";
 import jsConfetti from "canvas-confetti";
+import { format, compareAsc } from "date-fns";
 
 import {
   renderProjects,
@@ -34,7 +35,7 @@ import icon from "./noToDos.svg";
     // when user presses the form sumbit button this event listener fires and adds a new todo
     if (e.target && e.target.id == "submit") {
       e.preventDefault();
-
+      const form = document.querySelector("#form");
       const toDoTitle = document.getElementById("todo-title").value;
       const toDoDescription = document.getElementById("todo-description").value;
       const toDoDate = document.getElementById("todo-date").value;
@@ -43,6 +44,7 @@ import icon from "./noToDos.svg";
       toDoList.addToDo(toDo);
       toDoDivList = createToDoDivs(toDoList.toDos);
       checkButtonEL();
+      form.reset();
     }
   });
 
@@ -84,12 +86,11 @@ import icon from "./noToDos.svg";
           e.target.parentNode.parentNode.classList.remove("todo-done");
           e.target.parentNode.parentNode.dataset.state = "";
 
-          console.log(e.target.parentNode.parentNode);
           const targetToDoDiv = e.target.parentNode.parentNode.dataset.name;
-          console.log(`targetToDoDiv = ${targetToDoDiv}`);
+
           let targetToDoObj = toDoList.getToDo(targetToDoDiv);
           targetToDoObj.done = false;
-          console.log(`targetToDoObj = ${targetToDoObj}`);
+
           e.target.parentNode.parentNode.dataset.state = "";
         }
       });
