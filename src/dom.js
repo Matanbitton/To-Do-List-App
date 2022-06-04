@@ -1,4 +1,6 @@
 import jsConfetti from "canvas-confetti";
+import { format, compareAsc, parseISO } from "date-fns";
+
 const displayedToDos = document.querySelector(".displayed-todos");
 
 export function renderToDos(toDoDOM) {
@@ -17,6 +19,7 @@ export function createToDoDivs(toDoObjects) {
     const buttons = renderButtons();
     toDoDiv.className = "todo";
     date.className = "due-date";
+    console.log();
 
     if (toDoObjects[i].done) {
       toDoDiv.classList.add("todo-done");
@@ -44,8 +47,12 @@ export function createToDoDivs(toDoObjects) {
     }
 
     toDoText.innerText = `${toDoObjects[i].title}`;
-
-    date.innerText = `${toDoDiv.dataset.date}`;
+    if (toDoObjects[i].dueDate) {
+      date.innerText = `${format(
+        parseISO(toDoObjects[i].dueDate),
+        "dd/MM/yyyy"
+      )}`;
+    }
 
     buttons.prepend(date);
     toDoDiv.append(toDoText, buttons);
@@ -98,6 +105,12 @@ export function formVisiblity() {
   const formContainer = document.querySelector(".add-todo-form-container");
   const addToDoButton = document.querySelector(".add-todo-button");
   const formSubmit = document.querySelector(".submit");
+  const toDoDate = document.querySelector("#todo-date");
+
+  //setting the min date to today since there is no point in making a to do list of the past
+  let date = new Date();
+  console.log(toDoDate);
+  toDoDate.setAttribute("min", date);
 
   addToDoButton.addEventListener("click", () => {
     formContainer.style.display = "block";
