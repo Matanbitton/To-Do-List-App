@@ -15,11 +15,13 @@ export function createToDoDivs(toDoObjects) {
     const toDoDiv = document.createElement("div");
     const toDoText = document.createElement("p");
     const date = document.createElement("p");
+    const description = document.createElement("div");
 
     const buttons = renderButtons();
     toDoDiv.className = "todo";
     date.className = "due-date";
-    console.log();
+    toDoText.className = "todo-text";
+    description.style.display = "none";
 
     if (toDoObjects[i].done) {
       toDoDiv.classList.add("todo-done");
@@ -27,11 +29,13 @@ export function createToDoDivs(toDoObjects) {
       toDoDiv.dataset.priority = toDoObjects[i]["priority"];
       toDoDiv.dataset.name = toDoObjects[i]["title"];
       toDoDiv.dataset.date = toDoObjects[i]["dueDate"];
+      description.textContent = toDoObjects[i]["description"];
     } else {
       toDoDiv.className = "todo";
       toDoDiv.dataset.name = toDoObjects[i]["title"];
       toDoDiv.dataset.priority = toDoObjects[i]["priority"];
       toDoDiv.dataset.date = toDoObjects[i]["dueDate"];
+      description.textContent = `Description: ${toDoObjects[i]["description"]}`;
     }
 
     //setting priorities css attributes
@@ -55,7 +59,16 @@ export function createToDoDivs(toDoObjects) {
     }
 
     buttons.prepend(date);
-    toDoDiv.append(toDoText, buttons);
+    toDoDiv.append(toDoText, buttons, description);
+
+    toDoText.addEventListener("click", () => {
+      if (description.style.display == "none") {
+        description.style.display = "block";
+      } else {
+        description.style.display = "none";
+      }
+    });
+
     displayedToDos.append(toDoDiv);
   }
   return displayedToDos.childNodes;

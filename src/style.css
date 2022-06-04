@@ -163,6 +163,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 50px;
   grid-template-rows: 30px;
+  grid-auto-rows: auto;
   align-items: center;
   background-color: var(--lightpurple);
   font-size: 20px;
@@ -233,6 +234,12 @@ body {
   color: var(--green);
   padding: 5px;
   font-size: 20px;
+}
+.todo-text:hover {
+  cursor: pointer;
+}
+.description {
+  padding: 20px;
 }
 .project {
   color: var(--blue);
