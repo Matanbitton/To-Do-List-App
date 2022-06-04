@@ -5,7 +5,7 @@ export default class ToDoList {
     const toDo = new ToDo(
       "Watch a movie with friends",
       "",
-      "",
+      "2022-12-31",
       "low-importance"
     );
 
@@ -20,6 +20,7 @@ export default class ToDoList {
   getToDo(toDoTitle) {
     return this.toDos.find((toDo) => toDo.title == toDoTitle);
   }
+
   checkIfEmpty() {
     if (this.toDos.length == 0) {
       return true;
