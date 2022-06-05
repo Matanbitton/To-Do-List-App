@@ -99,16 +99,24 @@ export function listEmptyShowSVG(elementToAppendTo, img) {
 }
 export function renderProjects(projects) {
   const displayedProjects = document.querySelector(".projects-container");
+  const projectsFormOptions = document.querySelector("#todo-project");
+
   displayedProjects.innerHTML = "";
+  projectsFormOptions.innerHTML = "";
 
   for (let i = 0; i < projects.length; i++) {
     const projectDiv = document.createElement("div");
     const projectName = document.createElement("p");
+
+    const projectOption = document.createElement("option");
+    projectOption.innerText = projects[i].projectName;
     projectName.innerText = projects[i].projectName;
+    projectDiv.dataset.projectName = projects[i].projectName;
 
     projectDiv.className = "project-item";
     projectDiv.append(projectName);
     displayedProjects.prepend(projectDiv);
+    projectsFormOptions.append(projectOption);
   }
 }
 export function formVisiblity() {

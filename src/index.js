@@ -22,7 +22,7 @@ import icon from "./noToDos.svg";
   const doneToDoButton = document.querySelector(".done-todos");
   const allToDoButton = document.querySelector(".all-todos");
   const addProjectButton = document.querySelector(".add-project");
-  const projectsContainer = document.querySelector(".projects");
+  const projectsContainer = document.querySelector(".projects-container");
 
   let toDoDivList;
 
@@ -40,15 +40,19 @@ import icon from "./noToDos.svg";
       const toDoDescription = document.getElementById("todo-description").value;
       let toDoDate = document.getElementById("todo-date").value;
       const toDoPriority = document.getElementById("todo-priority").value;
-      console.log(toDoDate);
+      const toDoProject = document.getElementById("todo-project").value;
 
       if (toDoDate) {
-        toDoDate = parseISO(toDoDate, "dd/MM/yyyy");
-
-        toDoDate = `${format(toDoDate, "dd/MM/yyyy")}`;
+        toDoDate = `${format(parseISO(toDoDate), "dd/MM/yyyy")}`;
       }
 
-      const toDo = new ToDo(toDoTitle, toDoDescription, toDoDate, toDoPriority);
+      const toDo = new ToDo(
+        toDoTitle,
+        toDoDescription,
+        toDoDate,
+        toDoPriority,
+        toDoProject
+      );
       toDoList.addToDo(toDo);
       toDoDivList = createToDoDivs(toDoList.toDos);
       checkButtonEL();
@@ -146,13 +150,16 @@ import icon from "./noToDos.svg";
     }
   });
 
-  let workProject = new Project("Art");
-  workProject.addToProjectToDos(toDoList);
+  projectsContainer.addEventListener("click", (e) => {
+    if (e.target.className == "project-item") {
+      const projectShown = e.target.dataset.projectName;
+      const projectsToDos = toDoList.toDos.filter(
+        (toDo) => toDo.project == projectShown
+      );
+      createToDoDivs(projectsToDos);
+    }
+  });
+
   let projectsList = new ProjectsList();
-
-  // this works and you need a function that deletes
-  // the appropriate todo in relations to html element pressed
-
-  projectsList.addToProjectList(workProject);
   renderProjects(projectsList.projects);
 })();

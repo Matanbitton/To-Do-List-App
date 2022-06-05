@@ -6,7 +6,8 @@ export default class ToDoList {
       "Watch a movie with friends",
       "Don't forget your wallet like last time!",
       "12/31/2022",
-      "low-importance"
+      "low-importance",
+      "Work"
     );
 
     this.toDos.push(toDo);
