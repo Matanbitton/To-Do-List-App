@@ -52,10 +52,7 @@ export function createToDoDivs(toDoObjects) {
 
     toDoText.innerText = `${toDoObjects[i].title}`;
     if (toDoObjects[i].dueDate) {
-      date.innerText = `${format(
-        parseISO(toDoObjects[i].dueDate),
-        "dd/MM/yyyy"
-      )}`;
+      date.innerText = toDoObjects[i].dueDate;
     }
 
     buttons.prepend(date);
@@ -122,7 +119,6 @@ export function formVisiblity() {
 
   //setting the min date to today since there is no point in making a to do list of the past
   let date = new Date();
-  console.log(toDoDate);
   toDoDate.setAttribute("min", date);
 
   addToDoButton.addEventListener("click", () => {
