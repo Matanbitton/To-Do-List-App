@@ -4,8 +4,8 @@ export default class ToDoList {
     this.toDos = [];
     const toDo = new ToDo(
       "Watch a movie with friends",
-      "",
-      "2022-12-31",
+      "Don't forget your wallet like last time!",
+      "12/31/2022",
       "low-importance"
     );
 
