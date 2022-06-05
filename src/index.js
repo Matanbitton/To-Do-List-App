@@ -23,6 +23,7 @@ import icon from "./noToDos.svg";
   const allToDoButton = document.querySelector(".all-todos");
   const addProjectButton = document.querySelector(".add-project");
   const projectsContainer = document.querySelector(".projects-container");
+  const listCatagoryTitle = document.querySelector(".list-catagory-shown");
 
   let toDoDivList;
 
@@ -65,6 +66,7 @@ import icon from "./noToDos.svg";
 
     createToDoDivs(listDoneDivs);
     checkButtonEL();
+    changeListCatagoryTitle("Done");
   });
 
   allToDoButton.addEventListener("click", () => {
@@ -72,6 +74,7 @@ import icon from "./noToDos.svg";
     toDoDisplayed.innerHTML = "";
     createToDoDivs(allToDo);
     checkButtonEL();
+    changeListCatagoryTitle("All Time");
   });
   function checkButtonEL() {
     const checkButton = document.querySelectorAll(".check");
@@ -157,8 +160,12 @@ import icon from "./noToDos.svg";
         (toDo) => toDo.project == projectShown
       );
       createToDoDivs(projectsToDos);
+      changeListCatagoryTitle(`For ${projectShown}`);
     }
   });
+  function changeListCatagoryTitle(title) {
+    listCatagoryTitle.textContent = title;
+  }
 
   let projectsList = new ProjectsList();
   renderProjects(projectsList.projects);

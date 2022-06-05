@@ -243,7 +243,7 @@ body {
 .description {
   padding: 20px;
 }
-.project {
+.list-catagory-shown {
   color: var(--blue);
 }
 .add-project {
