@@ -4,7 +4,7 @@ import ToDoList from "./todolist";
 import Project from "./project";
 import ProjectsList from "./projectslist";
 import jsConfetti from "canvas-confetti";
-import { format, compareAsc } from "date-fns";
+import { format, compareAsc, parseISO } from "date-fns";
 
 import {
   renderProjects,
@@ -38,8 +38,16 @@ import icon from "./noToDos.svg";
       const form = document.querySelector("#form");
       const toDoTitle = document.getElementById("todo-title").value;
       const toDoDescription = document.getElementById("todo-description").value;
-      const toDoDate = document.getElementById("todo-date").value;
+      let toDoDate = document.getElementById("todo-date").value;
       const toDoPriority = document.getElementById("todo-priority").value;
+      console.log(toDoDate);
+
+      if (toDoDate) {
+        toDoDate = parseISO(toDoDate, "dd/MM/yyyy");
+
+        toDoDate = `${format(toDoDate, "dd/MM/yyyy")}`;
+      }
+
       const toDo = new ToDo(toDoTitle, toDoDescription, toDoDate, toDoPriority);
       toDoList.addToDo(toDo);
       toDoDivList = createToDoDivs(toDoList.toDos);
@@ -132,7 +140,6 @@ import icon from "./noToDos.svg";
     if (toDoDiv.dataset.name && e.target.className == "delete") {
       toDoList.removeToDo(toDoDiv.dataset.name);
       toDoDiv.remove();
-      console.log(toDoList.toDos);
       if (toDoList.toDos.length == 0) {
         listEmptyShowSVG(toDoDisplayed, myIcon);
       }
