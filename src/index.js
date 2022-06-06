@@ -24,6 +24,8 @@ import icon from "./noToDos.svg";
   const addProjectButton = document.querySelector(".add-project");
   const projectsContainer = document.querySelector(".projects-container");
   const listCatagoryTitle = document.querySelector(".list-catagory-shown");
+  const thisWeekButton = document.querySelector(".this-week-todos");
+  const todayButton = document.querySelector(".today-todos");
 
   let toDoDivList;
 
@@ -163,6 +165,13 @@ import icon from "./noToDos.svg";
       changeListCatagoryTitle(`For ${projectShown}`);
     }
   });
+  thisWeekButton.addEventListener("click", () => {
+    changeListCatagoryTitle(`This Week`);
+  });
+  todayButton.addEventListener("click", () => {
+    changeListCatagoryTitle("Today");
+  });
+
   function changeListCatagoryTitle(title) {
     listCatagoryTitle.textContent = title;
   }
