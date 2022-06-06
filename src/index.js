@@ -33,6 +33,7 @@ import icon from "./noToDos.svg";
   projectFormVisibility();
   createToDoDivs(toDoList.toDos);
   checkButtonEL();
+  changeDateButtonEL();
 
   body.addEventListener("click", (e) => {
     // when user presses the form sumbit button this event listener fires and adds a new todo
@@ -110,6 +111,26 @@ import icon from "./noToDos.svg";
 
           e.target.parentNode.parentNode.dataset.state = "";
         }
+      });
+    });
+  }
+  function changeDateButtonEL() {
+    const changeDateButtons = document.querySelectorAll(".change-date");
+
+    changeDateButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const toDoDiv = e.target.parentNode.parentNode.dataset.name;
+        let dateElement = e.target.parentNode.firstChild;
+        dateElement.innerHTML = `<input class= "date-changer" type = "date">`;
+        dateElement.addEventListener("change", (event) => {
+          let dateFormatted = `${format(
+            parseISO(event.target.value),
+            "dd/MM/yyyy"
+          )}`;
+          dateElement.innerHTML = dateFormatted;
+          toDoList.changeDate(toDoDiv, dateFormatted);
+          console.log(toDoList);
+        });
       });
     });
   }

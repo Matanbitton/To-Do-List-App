@@ -27,4 +27,8 @@ export default class ToDoList {
       return true;
     }
   }
+  changeDate(toDoTitle, date) {
+    let dateToChange = this.toDos.find((toDo) => toDo.title == toDoTitle);
+    dateToChange.dueDate = date;
+  }
 }

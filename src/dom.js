@@ -68,26 +68,26 @@ export function createToDoDivs(toDoObjects) {
 
     displayedToDos.append(toDoDiv);
   }
-  return displayedToDos.childNodes;
 }
 
 function renderButtons() {
-  const buttonsContainer = document.createElement("button-wrapper");
-  buttonsContainer.innerHTML += `<i class="fa-regular fa-calendar-minus"></i>`;
-
+  const buttonsContainer = document.createElement("div");
+  const changeDateButton = document.createElement("button");
   const checkButton = document.createElement("button");
   const deleteButton = document.createElement("button");
 
   deleteButton.className = "delete";
   checkButton.className = "check";
+  changeDateButton.className = "change-date";
   checkButton.id = "check";
 
   buttonsContainer.className = "button-wrapper";
 
   checkButton.innerHTML = `<i class="fa-solid fa-check"></i>`;
   deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+  changeDateButton.innerHTML = `<i class="fa-regular fa-calendar-minus"></i>`;
 
-  buttonsContainer.append(checkButton, deleteButton);
+  buttonsContainer.append(changeDateButton, checkButton, deleteButton);
   return buttonsContainer;
 }
 
