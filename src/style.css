@@ -404,7 +404,7 @@ body {
   border-radius: 1em;
   padding-right: 5px;
 }
-.fa-regular {
+.change-date {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -415,7 +415,7 @@ body {
   height: 40px;
   background-color: var(--blue);
 }
-.fa-regular:hover {
+.change-date:hover {
   background-color: rgb(52, 53, 134);
   cursor: pointer;
 }
@@ -468,4 +468,12 @@ body {
 }
 .project-item > p {
   pointer-events: none;
+}
+.fa-regular {
+  pointer-events: none;
+}
+.date-changer {
+  background-color: var(--lightpurple);
+  font-size: 16px;
+  color: var(--blue);
 }
