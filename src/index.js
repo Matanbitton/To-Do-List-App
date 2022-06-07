@@ -4,7 +4,14 @@ import ToDoList from "./todolist";
 import Project from "./project";
 import ProjectsList from "./projectslist";
 import jsConfetti from "canvas-confetti";
-import { format, compareAsc, parseISO } from "date-fns";
+import {
+  format,
+  compareAsc,
+  parseISO,
+  parse,
+  differenceInCalendarDays,
+  add,
+} from "date-fns";
 
 import {
   renderProjects,
@@ -60,6 +67,7 @@ import icon from "./noToDos.svg";
       toDoList.addToDo(toDo);
       toDoDivList = createToDoDivs(toDoList.toDos);
       checkButtonEL();
+      changeDateButtonEL();
       form.reset();
     }
   });
@@ -69,6 +77,7 @@ import icon from "./noToDos.svg";
 
     createToDoDivs(listDoneDivs);
     checkButtonEL();
+    changeDateButtonEL();
     changeListCatagoryTitle("Done");
   });
 
@@ -77,6 +86,7 @@ import icon from "./noToDos.svg";
     toDoDisplayed.innerHTML = "";
     createToDoDivs(allToDo);
     checkButtonEL();
+    changeDateButtonEL();
     changeListCatagoryTitle("All Time");
   });
   function checkButtonEL() {
@@ -129,7 +139,6 @@ import icon from "./noToDos.svg";
           )}`;
           dateElement.innerHTML = dateFormatted;
           toDoList.changeDate(toDoDiv, dateFormatted);
-          console.log(toDoList);
         });
       });
     });
@@ -164,7 +173,7 @@ import icon from "./noToDos.svg";
   const myIcon = new Image();
   myIcon.className = "no-todos-img";
   myIcon.src = icon;
-
+  // this deletes the todo from list and from page
   toDoDisplayed.addEventListener("click", (e) => {
     let toDoDiv = e.target.parentNode.parentNode;
     if (toDoDiv.dataset.name && e.target.className == "delete") {
@@ -175,7 +184,7 @@ import icon from "./noToDos.svg";
       }
     }
   });
-
+  // this changes the title to the current project shown
   projectsContainer.addEventListener("click", (e) => {
     if (e.target.className == "project-item") {
       const projectShown = e.target.dataset.projectName;
@@ -183,10 +192,39 @@ import icon from "./noToDos.svg";
         (toDo) => toDo.project == projectShown
       );
       createToDoDivs(projectsToDos);
+      checkButtonEL();
+
+      changeDateButtonEL();
+
       changeListCatagoryTitle(`For ${projectShown}`);
     }
   });
   thisWeekButton.addEventListener("click", () => {
+    let todayDate = new Date();
+    todayDate = todayDate.toISOString();
+    let temp = todayDate;
+    todayDate = format(parseISO(todayDate), "dd/MM/yyyy");
+    let theDateInAWeek = add(parseISO(temp), { days: 7 });
+    theDateInAWeek = format(theDateInAWeek, "dd/MM/yyyy");
+    let thisWeekToDos = toDoList.toDos.filter(function (toDo) {
+      let daysDiff = differenceInCalendarDays(
+        parse(theDateInAWeek, "dd/MM/yyyy", new Date()),
+        parse(toDo.dueDate, "dd/MM/yyyy", new Date())
+      );
+      return daysDiff <= 7;
+    });
+    let daysDiff = differenceInCalendarDays(
+      parse(theDateInAWeek, "dd/MM/yyyy", new Date()),
+      parse(todayDate, "dd/MM/yyyy", new Date())
+    );
+    console.log(todayDate);
+    console.log(theDateInAWeek);
+    console.log(thisWeekToDos);
+
+    createToDoDivs(thisWeekToDos);
+    checkButtonEL();
+    changeDateButtonEL();
+
     changeListCatagoryTitle(`This Week`);
   });
   todayButton.addEventListener("click", () => {
