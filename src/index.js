@@ -206,12 +206,13 @@ import icon from "./noToDos.svg";
     todayDate = format(parseISO(todayDate), "dd/MM/yyyy");
     let theDateInAWeek = add(parseISO(temp), { days: 7 });
     theDateInAWeek = format(theDateInAWeek, "dd/MM/yyyy");
-    let thisWeekToDos = toDoList.toDos.filter(function (toDo) {
+    let thisWeekToDos = toDoList.toDos.filter((toDo) => {
       let daysDiff = differenceInCalendarDays(
         parse(theDateInAWeek, "dd/MM/yyyy", new Date()),
         parse(toDo.dueDate, "dd/MM/yyyy", new Date())
       );
-      return daysDiff <= 7;
+      console.log(daysDiff);
+      return daysDiff <= 7 && daysDiff >= 0;
     });
     let daysDiff = differenceInCalendarDays(
       parse(theDateInAWeek, "dd/MM/yyyy", new Date()),
