@@ -15,7 +15,6 @@ import {
 
 import {
   renderProjects,
-  renderToDos,
   createToDoDivs,
   listEmptyShowSVG,
   formVisiblity,
@@ -211,16 +210,12 @@ import icon from "./noToDos.svg";
         parse(theDateInAWeek, "dd/MM/yyyy", new Date()),
         parse(toDo.dueDate, "dd/MM/yyyy", new Date())
       );
-      console.log(daysDiff);
       return daysDiff <= 7 && daysDiff >= 0;
     });
     let daysDiff = differenceInCalendarDays(
       parse(theDateInAWeek, "dd/MM/yyyy", new Date()),
       parse(todayDate, "dd/MM/yyyy", new Date())
     );
-    console.log(todayDate);
-    console.log(theDateInAWeek);
-    console.log(thisWeekToDos);
 
     createToDoDivs(thisWeekToDos);
     checkButtonEL();

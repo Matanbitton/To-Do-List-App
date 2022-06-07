@@ -3,11 +3,6 @@ import { format, compareAsc, parseISO } from "date-fns";
 
 const displayedToDos = document.querySelector(".displayed-todos");
 
-export function renderToDos(toDoDOM) {
-  toDoDOM.forEach((toDo) => {
-    displayedToDos.append(toDo);
-  });
-}
 export function createToDoDivs(toDoObjects) {
   //creating the to do divs
   displayedToDos.innerHTML = "";
