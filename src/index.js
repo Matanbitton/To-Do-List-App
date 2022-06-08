@@ -21,6 +21,7 @@ import {
 } from "./dom";
 import icon from "./noToDos.svg";
 
+//IIFE to start the app
 (function ToDoListApp() {
   const body = document.body;
   const toDoDisplayed = document.querySelector(".displayed-todos");
@@ -34,7 +35,7 @@ import icon from "./noToDos.svg";
   const todayButton = document.querySelector(".today-todos");
 
   let toDoDivList;
-
+  // adds event listeners and creates todos
   formVisiblity();
   projectFormVisibility();
   createToDoDivs(toDoList.toDos);
@@ -70,7 +71,7 @@ import icon from "./noToDos.svg";
       form.reset();
     }
   });
-
+  // this shows only the todos that are marked done
   doneToDoButton.addEventListener("click", () => {
     let listDoneDivs = toDoList.toDos.filter((toDo) => toDo.done == true);
 
@@ -79,7 +80,7 @@ import icon from "./noToDos.svg";
     changeDateButtonEL();
     changeListCatagoryTitle("Done");
   });
-
+  // all todos
   allToDoButton.addEventListener("click", () => {
     let allToDo = toDoList.toDos;
     toDoDisplayed.innerHTML = "";
@@ -88,6 +89,8 @@ import icon from "./noToDos.svg";
     changeDateButtonEL();
     changeListCatagoryTitle("All Time");
   });
+
+  // adds eventListeners to check buttons that changes the to do obj to done and UI of to do element
   function checkButtonEL() {
     const checkButton = document.querySelectorAll(".check");
 
@@ -102,7 +105,7 @@ import icon from "./noToDos.svg";
           const targetToDoDiv = e.target.parentNode.parentNode.dataset.name;
           let targetToDoObj = toDoList.getToDo(targetToDoDiv);
           targetToDoObj.done = true;
-
+          //confetti fun!
           let confetti = jsConfetti({
             spread: 120,
             particleCount: 200,
@@ -123,6 +126,7 @@ import icon from "./noToDos.svg";
       });
     });
   }
+  // adds event listeners to all changedate buttons and changes the date of the to do obj when clicked
   function changeDateButtonEL() {
     const changeDateButtons = document.querySelectorAll(".change-date");
 
@@ -142,6 +146,7 @@ import icon from "./noToDos.svg";
       });
     });
   }
+  //shows up when user clicks to add project this function renders an input element and adds new project to project list
   function projectFormVisibility() {
     const typeProjectNameInput = document.querySelector("#project-input");
     const typeProjectNameInputSubmit = document.querySelector(
@@ -168,7 +173,7 @@ import icon from "./noToDos.svg";
       }
     });
   }
-
+  //img shown when all toDo are done
   const myIcon = new Image();
   myIcon.className = "no-todos-img";
   myIcon.src = icon;
@@ -198,6 +203,7 @@ import icon from "./noToDos.svg";
       changeListCatagoryTitle(`For ${projectShown}`);
     }
   });
+  //this shows only the todos that are date to this week
   thisWeekButton.addEventListener("click", () => {
     let todayDate = new Date();
     todayDate = todayDate.toISOString();
@@ -223,10 +229,22 @@ import icon from "./noToDos.svg";
 
     changeListCatagoryTitle(`This Week`);
   });
+  //this shows the to dos that are dated today
   todayButton.addEventListener("click", () => {
+    let todayDate = new Date();
+    todayDate = todayDate.toISOString();
+    todayDate = format(parseISO(todayDate), "dd/MM/yyyy");
+    let todaysToDos = toDoList.toDos.filter((toDo) => {
+      return toDo.dueDate == todayDate;
+    });
+    console.log(todayDate);
+
+    createToDoDivs(todaysToDos);
+    checkButtonEL();
+    changeDateButtonEL();
     changeListCatagoryTitle("Today");
   });
-
+  // this changes the list Title at the top to the current to do list shown
   function changeListCatagoryTitle(title) {
     listCatagoryTitle.textContent = title;
   }
