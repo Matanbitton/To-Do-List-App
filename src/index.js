@@ -34,7 +34,6 @@ import icon from "./noToDos.svg";
   const thisWeekButton = document.querySelector(".this-week-todos");
   const todayButton = document.querySelector(".today-todos");
 
-  let toDoDivList;
   // adds event listeners and creates todos
   formVisiblity();
   projectFormVisibility();
@@ -65,7 +64,7 @@ import icon from "./noToDos.svg";
         toDoProject
       );
       toDoList.addToDo(toDo);
-      toDoDivList = createToDoDivs(toDoList.toDos);
+      createToDoDivs(toDoList.toDos);
       checkButtonEL();
       changeDateButtonEL();
       form.reset();
