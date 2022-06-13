@@ -34,10 +34,13 @@ import icon from "./noToDos.svg";
   const thisWeekButton = document.querySelector(".this-week-todos");
   const todayButton = document.querySelector(".today-todos");
 
+  const LOCAL_STORAGE_TODOS = "toDoList.ToDos";
+  let tempToDos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS)) || [];
+
   // adds event listeners and creates todos
   formVisiblity();
   projectFormVisibility();
-  createToDoDivs(toDoList.toDos);
+  createToDoDivs(tempToDos);
   checkButtonEL();
   changeDateButtonEL();
 
@@ -55,7 +58,6 @@ import icon from "./noToDos.svg";
       if (toDoDate) {
         toDoDate = `${format(parseISO(toDoDate), "dd/MM/yyyy")}`;
       }
-
       const toDo = new ToDo(
         toDoTitle,
         toDoDescription,
@@ -63,13 +65,20 @@ import icon from "./noToDos.svg";
         toDoPriority,
         toDoProject
       );
+      tempToDos.push(toDo);
+      save();
+
+      console.log(tempToDos);
       toDoList.addToDo(toDo);
-      createToDoDivs(toDoList.toDos);
+      createToDoDivs(tempToDos);
       checkButtonEL();
       changeDateButtonEL();
       form.reset();
     }
   });
+  function save() {
+    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(tempToDos));
+  }
   // this shows only the todos that are marked done
   doneToDoButton.addEventListener("click", () => {
     let listDoneDivs = toDoList.toDos.filter((toDo) => toDo.done == true);
@@ -172,6 +181,7 @@ import icon from "./noToDos.svg";
       }
     });
   }
+
   //img shown when all toDo are done
   const myIcon = new Image();
   myIcon.className = "no-todos-img";
