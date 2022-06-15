@@ -33,16 +33,22 @@ import icon from "./noToDos.svg";
   const thisWeekButton = document.querySelector(".this-week-todos");
   const todayButton = document.querySelector(".today-todos");
 
+  let projectsList = new ProjectsList();
   let toDoList = new ToDoList();
 
   const LOCAL_STORAGE_TODOS = "toDoList.ToDos";
-  const LOCAL_STORAGE_PROJECTS = "projects.";
+  const LOCAL_STORAGE_PROJECTS = "projectsList.projects";
   toDoList.toDos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS)) || [];
 
   let savedLocalTodos =
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS)) || toDoList.toDos;
 
+  let savedLocalProjects =
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS)) ||
+    projectsList.projects;
+
   // adds event listeners and creates todos
+  renderProjects(projectsList.projects);
   formVisiblity();
   projectFormVisibility();
   createToDoDivs(savedLocalTodos);
@@ -87,6 +93,10 @@ import icon from "./noToDos.svg";
   });
   function save() {
     localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(savedLocalTodos));
+    localStorage.setItem(
+      LOCAL_STORAGE_PROJECTS,
+      JSON.stringify(savedLocalProjects)
+    );
   }
   // this shows only the todos that are marked done
   doneToDoButton.addEventListener("click", () => {
@@ -189,8 +199,11 @@ import icon from "./noToDos.svg";
 
       if (typeProjectNameInput.value.length != 0) {
         let projectName = new Project(typeProjectNameInput.value);
+        projectsList.projects = savedLocalProjects;
         projectsList.addToProjectList(projectName);
-        renderProjects(projectsList.projects);
+        savedLocalProjects = projectsList.projects;
+        save();
+        renderProjects(savedLocalProjects);
       } else {
         typeProjectNameInput.style.border = "2px solid red";
       }
@@ -278,7 +291,4 @@ import icon from "./noToDos.svg";
   function changeListCatagoryTitle(title) {
     listCatagoryTitle.textContent = title;
   }
-
-  let projectsList = new ProjectsList();
-  renderProjects(projectsList.projects);
 })();
