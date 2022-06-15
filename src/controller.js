@@ -48,7 +48,7 @@ import icon from "./noToDos.svg";
     projectsList.projects;
 
   // adds event listeners and creates todos
-  renderProjects(projectsList.projects);
+  renderProjects(savedLocalProjects);
   formVisiblity();
   projectFormVisibility();
   createToDoDivs(savedLocalTodos);
