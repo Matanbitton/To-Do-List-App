@@ -5,7 +5,7 @@ const dataFns = require("date-fns");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
+  entry: "./src/controller.js",
 
   output: {
     filename: "bundle.js",
