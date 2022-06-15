@@ -25,7 +25,6 @@ import icon from "./noToDos.svg";
 (function ToDoListApp() {
   const body = document.body;
   const toDoDisplayed = document.querySelector(".displayed-todos");
-  const toDoList = new ToDoList();
   const doneToDoButton = document.querySelector(".done-todos");
   const allToDoButton = document.querySelector(".all-todos");
   const addProjectButton = document.querySelector(".add-project");
@@ -34,13 +33,19 @@ import icon from "./noToDos.svg";
   const thisWeekButton = document.querySelector(".this-week-todos");
   const todayButton = document.querySelector(".today-todos");
 
+  let toDoList = new ToDoList();
+
   const LOCAL_STORAGE_TODOS = "toDoList.ToDos";
-  let tempToDos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS)) || [];
+  const LOCAL_STORAGE_PROJECTS = "projects.";
+  toDoList.toDos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS)) || [];
+
+  let savedLocalTodos =
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS)) || toDoList.toDos;
 
   // adds event listeners and creates todos
   formVisiblity();
   projectFormVisibility();
-  createToDoDivs(tempToDos);
+  createToDoDivs(savedLocalTodos);
   checkButtonEL();
   changeDateButtonEL();
 
@@ -58,26 +63,30 @@ import icon from "./noToDos.svg";
       if (toDoDate) {
         toDoDate = `${format(parseISO(toDoDate), "dd/MM/yyyy")}`;
       }
-      const toDo = new ToDo(
-        toDoTitle,
-        toDoDescription,
-        toDoDate,
-        toDoPriority,
-        toDoProject
-      );
-      tempToDos.push(toDo);
-      save();
+      if (toDoTitle.length == 0) {
+        missingFormParts();
+      } else {
+        const toDo = new ToDo(
+          toDoTitle,
+          toDoDescription,
+          toDoDate,
+          toDoPriority,
+          toDoProject
+        );
 
-      console.log(tempToDos);
-      toDoList.addToDo(toDo);
-      createToDoDivs(tempToDos);
-      checkButtonEL();
-      changeDateButtonEL();
-      form.reset();
+        console.log(savedLocalTodos);
+        savedLocalTodos.push(toDo);
+        toDoList.addToDo(toDo);
+        save();
+        createToDoDivs(savedLocalTodos);
+        checkButtonEL();
+        changeDateButtonEL();
+        form.reset();
+      }
     }
   });
   function save() {
-    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(tempToDos));
+    localStorage.setItem(LOCAL_STORAGE_TODOS, JSON.stringify(savedLocalTodos));
   }
   // this shows only the todos that are marked done
   doneToDoButton.addEventListener("click", () => {
@@ -113,6 +122,9 @@ import icon from "./noToDos.svg";
           const targetToDoDiv = e.target.parentNode.parentNode.dataset.name;
           let targetToDoObj = toDoList.getToDo(targetToDoDiv);
           targetToDoObj.done = true;
+          savedLocalTodos = toDoList.toDos;
+          save();
+
           //confetti fun!
           let confetti = jsConfetti({
             spread: 120,
@@ -128,7 +140,8 @@ import icon from "./noToDos.svg";
 
           let targetToDoObj = toDoList.getToDo(targetToDoDiv);
           targetToDoObj.done = false;
-
+          savedLocalTodos = toDoList.toDos;
+          save();
           e.target.parentNode.parentNode.dataset.state = "";
         }
       });
@@ -150,6 +163,8 @@ import icon from "./noToDos.svg";
           )}`;
           dateElement.innerHTML = dateFormatted;
           toDoList.changeDate(toDoDiv, dateFormatted);
+          savedLocalTodos = toDoList.toDos;
+          save();
         });
       });
     });
@@ -181,6 +196,9 @@ import icon from "./noToDos.svg";
       }
     });
   }
+  function missingFormParts() {
+    alert("OOPS! You left some required fields missing.");
+  }
 
   //img shown when all toDo are done
   const myIcon = new Image();
@@ -190,7 +208,10 @@ import icon from "./noToDos.svg";
   toDoDisplayed.addEventListener("click", (e) => {
     let toDoDiv = e.target.parentNode.parentNode;
     if (toDoDiv.dataset.name && e.target.className == "delete") {
+      toDoList.toDos = savedLocalTodos;
       toDoList.removeToDo(toDoDiv.dataset.name);
+      savedLocalTodos = toDoList.toDos;
+      save();
       toDoDiv.remove();
       if (toDoList.toDos.length == 0) {
         listEmptyShowSVG(toDoDisplayed, myIcon);
