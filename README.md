@@ -1,7 +1,5 @@
 # To-Do-List-App
 
-# Library-Project
-
 - 👨‍💻 See the live version of this project at **[GetToDo](https://matanbitton.github.io/To-Do-List-App/)**
 
 ## About The Project
