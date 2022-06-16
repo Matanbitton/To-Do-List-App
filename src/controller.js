@@ -80,9 +80,8 @@ import icon from "./noToDos.svg";
           toDoProject
         );
 
-        console.log(savedLocalTodos);
         savedLocalTodos.push(toDo);
-        toDoList.addToDo(toDo);
+        toDoList.toDos = savedLocalTodos;
         save();
         createToDoDivs(savedLocalTodos);
         checkButtonEL();
