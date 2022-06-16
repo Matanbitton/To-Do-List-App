@@ -5,6 +5,7 @@
 ## About The Project
 
 GetToDo is a to do list App with a single objective in mind, Make to do lists fun!
+
 I truly believe that we don't HAVE to do the things we do, We GET to do them.
 
 With this app users can:
