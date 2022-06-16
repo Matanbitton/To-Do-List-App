@@ -480,3 +480,7 @@ body {
 .date-changer:hover {
   cursor: pointer;
 }
+.no-todos-img {
+  height: 500px;
+  width: 500px;
+}
