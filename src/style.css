@@ -66,7 +66,7 @@ body {
   align-items: center;
   gap: 10px;
   text-align: start;
-  font-size: 20px;
+  font-size: 18px;
   color: var(--textcolor);
   font-family: var(--font);
   background-color: var(--lightpurple);
@@ -86,7 +86,7 @@ body {
   flex-direction: column;
 
   text-align: start;
-  font-size: 20px;
+  font-size: 18px;
   color: var(--textcolor);
   font-family: var(--font);
   background-color: var(--lightpurple);
@@ -95,11 +95,11 @@ body {
 }
 .projects > div {
   padding-left: 20px;
-  font-size: 22px;
+  font-size: 20px;
   width: 100%;
 }
 .projects-header {
-  font-size: 25px;
+  font-size: 22px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -143,7 +143,7 @@ body {
   color: var(--textcolor);
 }
 .catagory-title {
-  font-size: 40px;
+  font-size: 35px;
   font-family: var(--font);
   height: 100px;
   margin-bottom: 0;
@@ -249,8 +249,8 @@ body {
 .add-project {
   background-color: var(--lightpurple);
   border-radius: 0.5em;
-  width: 40px;
-  height: 30px;
+  width: 35px;
+  height: 25px;
 }
 .add-project:hover {
   background-color: var(--blue);
@@ -258,14 +258,17 @@ body {
   cursor: pointer;
 }
 .get-to-do {
-  font-size: 30px;
+  font-size: 25px;
   padding-left: 5px;
 }
 .no-todos-text {
   font-family: var(--font);
   color: var(--darkpurple);
-  font-size: 30px;
+  font-size: 20px;
   pointer-events: none;
+  position: absolute;
+  top: 20%;
+  left: 40%;
 }
 .fa-trash,
 .fa-check {
@@ -278,7 +281,7 @@ body {
   gap: 10px;
 
   font-family: var(--font);
-  font-size: 30px;
+  font-size: 20px;
 }
 .add-todo-form-container {
   display: none;
@@ -286,19 +289,19 @@ body {
   padding: 20px;
   position: absolute;
   left: 50%;
-  top: 20%;
+  top: 10%;
   transform: translate(-50%, 0);
   z-index: 1;
-  height: 820px;
-  width: 600px;
+  height: 720px;
+  width: 500px;
   background-color: var(--lightpurple);
-  border: 5px solid var(--blue);
+  border: 4px solid var(--blue);
   box-shadow: 2px 10px 10px 2px grey;
 }
 .add-todo-form > input {
   border-radius: 1em;
-  font-size: 20px;
-  padding: 10px;
+  font-size: 18px;
+  padding: 8px;
 }
 .add-todo-form > label {
   font-style: italic;
@@ -307,18 +310,18 @@ body {
 .add-todo-form > select {
   border-radius: 1em;
   background-color: rgb(255, 255, 255);
-  padding: 20px;
-  font-size: 25px;
+  padding: 10px;
+  font-size: 20px;
 }
 .add-todo-form > button {
   background-color: var(--lightpurple);
   color: var(--blue);
-  border: 5px solid var(--blue);
+  border: 3px solid var(--blue);
   font-family: var(--font);
 
-  font-size: 30px;
-  padding: 20px;
-  margin-top: 30px;
+  font-size: 25px;
+  padding: 10px;
+  margin-top: 20px;
   border-radius: 1em;
 }
 .add-todo-form > button:hover {
@@ -339,17 +342,15 @@ body {
 .add-todo-button {
   background-color: white;
   color: var(--blue);
-  font-size: 35px;
+  font-size: 28px;
   font-weight: 500;
   border: 2px solid var(--blue);
-  width: 80%;
   border-radius: 0.5em;
-
   font-family: var(--font);
   display: inline-block;
   vertical-align: middle;
   width: 80%;
-  margin-left: 20px;
+  margin-left: 80px;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -481,6 +482,9 @@ body {
   cursor: pointer;
 }
 .no-todos-img {
-  height: 500px;
-  width: 500px;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  height: 400px;
+  width: 600px;
 }
