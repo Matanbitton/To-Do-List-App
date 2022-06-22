@@ -1,6 +1,6 @@
 # To-Do-List-App
 
-- 👨‍💻 See the live version of this project at **[GetToDo](https://matanbitton.github.io/To-Do-List-App/)**
+- 👨‍💻 See the live version of this project at **[GetToDo](https://matanbitton.github.io/To-Do-List-App/)** (Not optimized for mobile yet)
 
 ## About The Project
 
