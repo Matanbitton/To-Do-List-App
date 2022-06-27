@@ -260,10 +260,6 @@ import icon from "./noToDos.svg";
       );
       return daysDiff <= 7 && daysDiff >= 0;
     });
-    let daysDiff = differenceInCalendarDays(
-      parse(theDateInAWeek, "dd/MM/yyyy", new Date()),
-      parse(todayDate, "dd/MM/yyyy", new Date())
-    );
 
     createToDoDivs(thisWeekToDos);
     checkButtonEL();
