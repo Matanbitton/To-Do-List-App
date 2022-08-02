@@ -5,7 +5,10 @@ const displayedToDos = document.querySelector(".displayed-todos");
 
 export function createToDoDivs(toDoObjects) {
   //creating the to do divs
-  displayedToDos.innerHTML = "";
+  while (displayedToDos.firstChild) {
+    displayedToDos.removeChild(displayedToDos.firstChild);
+  }
+
   for (let i = 0; i < toDoObjects.length; i++) {
     const toDoDiv = document.createElement("div");
     const toDoText = document.createElement("p");
